@@ -1,0 +1,6 @@
+[submodule "libft_mem"]
+	path = libft_mem
+	url = git@gitlab.com:JonathanDUFOUR/libft_mem.git
+[submodule "libft_string"]
+	path = libft_string
+	url = git@gitlab.com:JonathanDUFOUR/libft_string.git

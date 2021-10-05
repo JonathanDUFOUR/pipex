@@ -6,63 +6,83 @@
 #    By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/26 00:03:10 by jodufour          #+#    #+#              #
-#    Updated: 2021/09/26 03:28:54 by jodufour         ###   ########.fr        #
+#    Updated: 2021/10/05 04:09:03 by jodufour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ######################################
 #              COMMANDS              #
 ######################################
-CC		=	clang -c -o
-LINK	=	clang -o
-MKDIR	=	mkdir -p
-RM		=	rm -rf
+CC					=	clang -c -o
+LINK				=	clang -o
+MKDIR				=	mkdir -p
+RM					=	rm -rf
 
 ######################################
 #             EXECUTABLE             #
 ######################################
-NAME	=	pipex
+NAME				=	pipex
 
 #######################################
 #             DIRECTORIES             #
 #######################################
-SRC_DIR	=	srcs/
-OBJ_DIR	=	objs/
-INC_DIR	=	
-PRV_DIR	=	private/
+SRC_DIR				=	srcs/
+OBJ_DIR				=	objs/
+INC_DIR				=	
+PRV_DIR				=	private/
+
+FT_MEM_DIR			=	libft_mem/
+FT_MEM_INC_DIR		=	includes/
+FT_MEM_INC_DIR		:=	${addprefix ${FT_MEM_DIR}, ${FT_MEM_INC_DIR}}
+
+FT_STRING_DIR		=	libft_string/
+FT_STRING_INC_DIR	=	includes/
+FT_STRING_INC_DIR	:=	${addprefix ${FT_STRING_DIR}, ${FT_STRING_INC_DIR}}
 
 #######################################
 #              LIBRARIES              #
 #######################################
+FT_MEM_A			=	libft_mem.a
+FT_MEM_A			:=	${addprefix ${FT_MEM_DIR}, ${FT_MEM_A}}
+
+FT_STRING_A			=	libft_string.a
+FT_STRING_A			:=	${addprefix ${FT_STRING_DIR}, ${FT_STRING_A}}
 
 ######################################
 #            SOURCE FILES            #
 ######################################
-SRC		=	\
-			${addprefix ctx/,	\
-				px_ctx_clear.c	\
-				px_ctx_get.c	\
-				px_ctx_init.c	\
-			}					\
-			main.c				\
-			px_err_msg.c
+SRC					=	\
+						${addprefix ctx/,		\
+							px_ctx_clear.c		\
+							px_ctx_get.c		\
+							px_ctx_init.c		\
+							px_ctx_print.c		\
+						}						\
+						main.c					\
+						px_err_msg.c			\
+						px_file_content_get.c	\
+						px_multi_pipe.c			\
+						px_path_get.c
 
 ######################################
 #            OBJECT FILES            #
 ######################################
-OBJ		=	${SRC:.c=.o}
-OBJ		:=	${addprefix ${OBJ_DIR}, ${OBJ}}
+OBJ					=	${SRC:.c=.o}
+OBJ					:=	${addprefix ${OBJ_DIR}, ${OBJ}}
 
-DEP		=	${OBJ:.o=.d}
+DEP					=	${OBJ:.o=.d}
 
 #######################################
 #                FLAGS                #
 #######################################
-CFLAGS	=	-Wall -Wextra #-Werror
-CFLAGS	+=	-MMD -MP
-CFLAGS	+=	-I${PRV_DIR}
+CFLAGS				=	-Wall -Wextra #-Werror
+CFLAGS				+=	-MMD -MP
+CFLAGS				+=	-I${PRV_DIR}
+CFLAGS				+=	-I${FT_MEM_INC_DIR}
+CFLAGS				+=	-I${FT_STRING_INC_DIR}
 
-LDFLAGS	=	
+LDFLAGS				=	-L${FT_MEM_DIR} -lft_mem
+LDFLAGS				+=	-L${FT_STRING_DIR} -lft_string
 
 ifeq (${DEBUG}, 1)
 	CFLAGS	+=	-g
@@ -71,8 +91,8 @@ endif
 #######################################
 #                RULES                #
 #######################################
-${NAME}:	${OBJ}
-	${LINK} $@ $^ ${LDFLAGS}
+${NAME}:	${OBJ} ${FT_MEM_A} ${FT_STRING_A}
+	${LINK} $@ ${OBJ} ${LDFLAGS}
 
 all:	${NAME}
 
@@ -82,33 +102,23 @@ ${OBJ_DIR}%.o:	${SRC_DIR}%.c
 	@${MKDIR} ${@D}
 	${CC} $@ ${CFLAGS} $<
 
+${FT_MEM_A}:
+	${MAKE} ${@F} -C ${@D}
+
+${FT_STRING_A}:
+	${MAKE} ${@F} -C ${@D}
+
 clean:
 	${RM} ${OBJ_DIR}
 
 fclean:
 	${RM} ${OBJ_DIR} ${NAME}
+	${MAKE} $@ -C ${FT_MEM_DIR}
+	${MAKE} $@ -C ${FT_STRING_DIR}
 
 re:	fclean all
 
-coffee:
-	@echo         '                                              '
-	@echo -e '\e[5m                   "   "                      \e[0m'
-	@echo -e '\e[5m                  " " " "                     \e[0m'
-	@echo -e '\e[5m                 " " " "                      \e[0m'
-	@echo         '         _.-==="-"""""-"===-._                '
-	@echo         '        |=___   "~"~"~"   ___=|=,.            '
-	@echo         '        |    """======="""    |  \\           '
-	@echo         '        |                     |   ||          '
-	@echo         '        |                     |   ||          '
-	@echo         '        |                     |   ||          '
-	@echo         '        |                     |   ||          '
-	@echo         '        |                     |  //           '
-	@echo         '         \                   /=="`            '
-	@echo         '          \                 /                 '
-	@echo         '           `"--._______.--"`                  '
-	@echo         '                                              '
-
-norm:
-	@norminette ${SRC_DIR} ${PRV_DIR} | grep 'Error' ; true
+-include /home/jodufour/Templates/mk_files/coffee.mk
+-include /home/jodufour/Templates/mk_files/norm.mk
 
 .PHONY:	all clean fclean re coffee norm

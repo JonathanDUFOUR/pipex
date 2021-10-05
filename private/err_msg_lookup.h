@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:46:27 by jodufour          #+#    #+#             */
-/*   Updated: 2021/09/26 03:46:57 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/05 03:52:45 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define ERR_MSG_LOOKUP_H
 
 # include <stddef.h>
-# include <stdbool.h>
 # include "enum/e_ret.h"
 
 typedef struct s_err_msg	t_err_msg;
@@ -24,14 +23,18 @@ struct s_err_msg
 	int const		err;
 	char const		*msg;
 	size_t const	len;
-	bool const		detail;
+	int const		detail;
 };
 
 static t_err_msg const		g_err_msg[] = {
-	{AC_ERR, "Too few arguments", 17, false},
-	{OPEN_ERR, "open() failed", 13, true},
-	{CLOSE_ERR, "close() failed", 14, true},
-	{0, NULL, 0, false}
+	{AC_ERR, "Too few arguments", 17, 0},
+	{PIPE_ERR, "pipe() failed", 13, 1},
+	{FORK_ERR, "fork() failed", 13, 1},
+	{OPEN_ERR, "open() failed", 13, 1},
+	{CLOSE_ERR, "close() failed", 14, 1},
+	{PATH_GET_ERR, "px_path_get() failed", 20, 0},
+	{FILE_CONTENT_GET_ERR, "px_file_content_get() failed", 25, 0},
+	{0, NULL, 0, 0}
 };
 
 #endif
