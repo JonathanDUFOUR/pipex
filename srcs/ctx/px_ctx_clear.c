@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 02:17:52 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/05 00:42:17 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/06 02:12:20 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	px_ctx_clear(void)
 		px_err_msg(CLOSE_ERR);
 	if (ctx->outfile_fd != -1 && close(ctx->outfile_fd) == -1)
 		px_err_msg(CLOSE_ERR);
-	free(ctx->infile_content);
 	free(ctx->path);
 	ft_memset(ctx, 0, sizeof(t_ctx));
 }

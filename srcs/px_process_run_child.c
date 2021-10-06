@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   px_ctx_print.c                                     :+:      :+:    :+:   */
+/*   px_process_run_child.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/04 21:43:52 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/06 02:12:37 by jodufour         ###   ########.fr       */
+/*   Created: 2021/10/05 23:27:19 by jodufour          #+#    #+#             */
+/*   Updated: 2021/10/06 04:05:03 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "type/t_ctx.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include "ft_string.h"
+#include "ft_mem.h"
+#include "pipex.h"
+#include "enum/e_fd.h"
+#include "enum/e_ret.h"
 
-void	px_ctx_print(void)
+/*
+**	./pipex infile cmd0 cmd1 outfile
+**	             W-R  W-R  W-R
+*/
+int	px_process_run_child(int depth)
 {
-	t_ctx *const	ctx = px_ctx_get();
-	char			**path;
-
-	printf("ctx->infile_fd: %d\n", ctx->infile_fd);
-	printf("ctx->outfile_fd: %d\n", ctx->outfile_fd);
-	printf("ctx->infile_name: %s\n", ctx->infile_name);
-	printf("ctx->outfile_name: %s\n", ctx->outfile_name);
-	printf("ctx->path:\n");
-	path = ctx->path;
-	while (path && *path)
-		printf("\t%s\n", *path++);
+	printf("CHILD %d - I am alive !\n", depth);
+	return (SUCCESS);
 }

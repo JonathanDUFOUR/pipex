@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:42:55 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/05 04:06:46 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/06 04:05:58 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,12 @@
 # endif
 
 # include <stddef.h>
+# include "type/t_int.h"
 
-int		px_multi_pipe(int const ac);
-int		px_process_run_child(int *fd);
-int		px_process_run_parent(int *fd);
+int		px_multi_fork(int **fd, t_uint const pipe_count, int depth);
+int		px_multi_pipe(t_uint const pipe_count);
+int		px_process_run_child(int depth);
+int		px_process_run_parent(int depth);
 
 void	px_err_msg(int err);
 

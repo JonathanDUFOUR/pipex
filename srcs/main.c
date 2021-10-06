@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:28:37 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/05 04:10:01 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/06 04:00:44 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int const ac, char const **av, char const **ep)
 	if (ret == SUCCESS)
 		px_ctx_print();
 	if (ret == SUCCESS)
-		ret = px_multi_pipe(ac);
+		ret = px_multi_pipe((t_uint)(ac - 2));
 	px_ctx_clear();
 	if (ret != SUCCESS)
 		px_err_msg(ret);

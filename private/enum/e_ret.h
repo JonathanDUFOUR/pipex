@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:29:21 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/05 03:52:26 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/06 01:47:59 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ enum	e_ret
 	PIPE_ERR,
 	FORK_ERR,
 	OPEN_ERR,
+	DUP2_ERR,
 	CLOSE_ERR,
+	MALLOC_ERR,
+	WAITPID_ERR,
 	PATH_GET_ERR,
 	FILE_CONTENT_GET_ERR
 };
