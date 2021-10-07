@@ -6,9 +6,12 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 04:02:23 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/06 03:46:13 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/06 21:45:03 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* DEBUG */
+#include <stdio.h>
 
 #include <unistd.h>
 #include <stdlib.h>
@@ -90,6 +93,7 @@ int	px_multi_pipe(t_uint const pipe_count)
 	int				ret;
 	t_uint			i;
 
+	printf("pipe_count: %u\n", pipe_count);
 	fd = fd_init(pipe_count);
 	if (!fd)
 		return (MALLOC_ERR);

@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:46:27 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/06 01:48:21 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/08 00:17:04 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ static t_err_msg const		g_err_msg[] = {
 	{OPEN_ERR, "open() failed", 13, 1},
 	{DUP2_ERR, "dup2() failed", 13, 1},
 	{CLOSE_ERR, "close() failed", 14, 1},
+	{WRITE_ERR, "write() dailed", 14, 1},
 	{MALLOC_ERR, "malloc() failed", 15, 0},
 	{WAITPID_ERR, "waitpid() failed", 16, 1},
 	{PATH_GET_ERR, "px_path_get() failed", 20, 0},

@@ -6,9 +6,12 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 23:54:26 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/05 00:20:42 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/08 01:21:46 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+/* DEBUG */
+#include <stdio.h>
 
 #include <unistd.h>
 #include "ft_mem.h"
@@ -32,12 +35,13 @@ char	*px_file_content_get(int const fd)
 		ft_memdel(&tmp);
 		if (!output)
 			return (NULL);
-		rd = read(fd, buff, BUFFER_SIZE);
+		if (rd == BUFFER_SIZE)
+			rd = read(fd, buff, BUFFER_SIZE);
+		else
+			rd = 0;
 	}
-	if (rd == -1)
-	{
-		ft_memdel(&output);
-		return (NULL);
-	}
-	return (output);
+	if (rd == 0)
+		return (output);
+	ft_memdel(&output);
+	return (NULL);
 }
