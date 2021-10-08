@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:42:55 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 12:03:41 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/08 23:48:14 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@
 # include "type/t_int.h"
 
 int		px_command_run(int fd_in, int fd_out, char const *av);
-int		px_multi_fork(int **fd, t_uint const pipe_count, char const **av);
+int		px_multi_close(int **fd, t_uint const pipe_count, t_uint const depth);
+int		px_multi_fork(int **fd, t_uint const pipe_count, char const **av,
+			t_uint depth);
 int		px_multi_pipe(t_uint const pipe_count, char const **av);
 int		px_process_run(int *prev, int *next, char const *av);
 

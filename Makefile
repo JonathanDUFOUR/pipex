@@ -6,7 +6,7 @@
 #    By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/26 00:03:10 by jodufour          #+#    #+#              #
-#    Updated: 2021/10/08 12:04:09 by jodufour         ###   ########.fr        #
+#    Updated: 2021/10/08 23:35:22 by jodufour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,7 @@ SRC					=	\
 						px_command_run.c				\
 						px_err_msg.c					\
 						px_file_content_get.c			\
+						px_multi_close.c				\
 						px_multi_fork.c					\
 						px_multi_pipe.c					\
 						px_path_get.c					\

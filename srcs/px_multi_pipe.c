@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 04:02:23 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 07:08:02 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/09 00:52:11 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,9 @@ static int	dup2_infile(int **fd)
 	fd[0][RD] = dup2(ctx->infile_fd, fd[0][RD]);
 	if (fd[0][RD] == -1)
 		return (DUP2_ERR);
+	if (ctx->infile_fd != -1 && close(ctx->infile_fd) == -1)
+		return (CLOSE_ERR);
+	ctx->infile_fd = -1;
 	return (SUCCESS);
 }
 
@@ -81,6 +84,9 @@ static int	dup2_outfile(int **fd, t_uint const pipe_count)
 	fd[pipe_count - 1][WR] = dup2(ctx->outfile_fd, fd[pipe_count - 1][WR]);
 	if (fd[pipe_count - 1][WR] == -1)
 		return (DUP2_ERR);
+	if (ctx->outfile_fd != -1 && close(ctx->outfile_fd) == -1)
+		return (CLOSE_ERR);
+	ctx->outfile_fd = -1;
 	return (SUCCESS);
 }
 
@@ -106,7 +112,7 @@ int	px_multi_pipe(t_uint const pipe_count, char const **av)
 	if (ret == SUCCESS)
 		ret = dup2_outfile(fd, pipe_count);
 	if (ret == SUCCESS)
-		ret = px_multi_fork(fd, pipe_count, av);
+		ret = px_multi_fork(fd, pipe_count, av, 0);
 	fd_clear(fd, pipe_count);
 	return (ret);
 }
