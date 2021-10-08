@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 23:28:12 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 01:20:04 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/08 02:04:54 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,11 @@ static int	legacy_transfer(t_uint const depth, int *prev, int *next)
 {
 	char	*legacy;
 
-	printf("PARENT %u - Getting my legacy\n", depth);
 	legacy = px_file_content_get(prev[RD]);
 	if (!legacy)
 		return (FILE_CONTENT_GET_ERR);
 	printf("PARENT %u - This is my legacy: |%s|\n", depth, legacy);
-	if (depth)
-		printf("PARENT %u - Sending it to PARENT %u\n", depth, depth - 1);
-	else
-		printf("PARENT %u - Sending it to outfile\n", depth);
+	printf("PARENT %u - Sending it to my child\n", depth);
 	if (write(next[WR], legacy, ft_strlen(legacy)) == -1)
 		return (WRITE_ERR);
 	printf("PARENT %u - Done!\n", depth);
@@ -49,7 +45,6 @@ static int	legacy_transfer(t_uint const depth, int *prev, int *next)
 
 int	px_process_run_parent(t_uint const depth, int *prev, int *next)
 {
-	data_print(depth, prev, next);
 	if (close(prev[WR]) == -1)
 		return (CLOSE_ERR);
 	prev[WR] = -1;
