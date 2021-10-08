@@ -6,12 +6,9 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 04:02:23 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/06 21:45:03 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/08 04:35:27 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/* DEBUG */
-#include <stdio.h>
 
 #include <unistd.h>
 #include <stdlib.h>
@@ -87,13 +84,12 @@ static int	dup2_outfile(int **fd, t_uint const pipe_count)
 	return (SUCCESS);
 }
 
-int	px_multi_pipe(t_uint const pipe_count)
+int	px_multi_pipe(t_uint const pipe_count, char const **cmds)
 {
 	int				**fd;
 	int				ret;
 	t_uint			i;
 
-	printf("pipe_count: %u\n", pipe_count);
 	fd = fd_init(pipe_count);
 	if (!fd)
 		return (MALLOC_ERR);
@@ -110,7 +106,7 @@ int	px_multi_pipe(t_uint const pipe_count)
 	if (ret == SUCCESS)
 		ret = dup2_outfile(fd, pipe_count);
 	if (ret == SUCCESS)
-		ret = px_multi_fork(fd, pipe_count, 0);
+		ret = px_multi_fork(fd, pipe_count, cmds);
 	fd_clear(fd, pipe_count);
 	return (ret);
 }

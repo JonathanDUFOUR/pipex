@@ -6,12 +6,9 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 23:54:26 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 01:21:46 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/08 04:34:40 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/* DEBUG */
-#include <stdio.h>
 
 #include <unistd.h>
 #include "ft_mem.h"

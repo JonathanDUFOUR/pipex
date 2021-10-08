@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:29:21 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 00:16:45 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/08 03:20:30 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ enum	e_ret
 	CLOSE_ERR,
 	WRITE_ERR,
 	MALLOC_ERR,
+	EXECVE_ERR,
 	WAITPID_ERR,
 	PATH_GET_ERR,
 	FILE_CONTENT_GET_ERR
