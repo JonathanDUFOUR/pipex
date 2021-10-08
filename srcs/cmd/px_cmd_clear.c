@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   px_path_get.c                                      :+:      :+:    :+:   */
+/*   px_cmd_clear.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 00:48:02 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 08:18:34 by jodufour         ###   ########.fr       */
+/*   Created: 2021/10/08 07:37:18 by jodufour          #+#    #+#             */
+/*   Updated: 2021/10/08 11:07:12 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include "ft_mem.h"
+#include "type/t_cmd.h"
 
-char	**px_path_get(char const **ep)
+int	px_cmd_clear(t_cmd *cmd, int const ret)
 {
-	while (*ep)
-	{
-		if (ft_strnstr(*ep, "PATH", 4))
-			return (ft_split((*ep) + 5, ':'));
-		++ep;
-	}
-	return (NULL);
+	ft_memdel(&cmd->av);
+	ft_memdel(&cmd->name);
+	ft_memdel(&cmd->path);
+	ft_memset(cmd, 0, sizeof(t_cmd));
+	return (ret);
 }

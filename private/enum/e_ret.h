@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:29:21 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 03:20:30 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:29:31 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ enum	e_ret
 {
 	SUCCESS,
 	AC_ERR,
+	DUP_ERR,
 	PIPE_ERR,
 	FORK_ERR,
 	OPEN_ERR,
@@ -27,6 +28,9 @@ enum	e_ret
 	EXECVE_ERR,
 	WAITPID_ERR,
 	PATH_GET_ERR,
+	CMD_AV_GET_ERR,
+	CMD_NAME_GET_ERR,
+	CMD_PATH_GET_ERR,
 	FILE_CONTENT_GET_ERR
 };
 

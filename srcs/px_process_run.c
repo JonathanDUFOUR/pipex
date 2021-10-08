@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   px_path_get.c                                      :+:      :+:    :+:   */
+/*   px_process_run_parent.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 00:48:02 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 08:18:34 by jodufour         ###   ########.fr       */
+/*   Created: 2021/10/05 23:28:12 by jodufour          #+#    #+#             */
+/*   Updated: 2021/10/08 12:03:22 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_string.h"
+#include <unistd.h>
+#include "pipex.h"
+#include "enum/e_fd.h"
+#include "enum/e_ret.h"
 
-char	**px_path_get(char const **ep)
+int	px_process_run(int *prev, int *next, char const *av)
 {
-	while (*ep)
-	{
-		if (ft_strnstr(*ep, "PATH", 4))
-			return (ft_split((*ep) + 5, ':'));
-		++ep;
-	}
-	return (NULL);
+	if (close(prev[WR]) == -1)
+		return (CLOSE_ERR);
+	prev[WR] = -1;
+	if (close(next[RD]) == -1)
+		return (CLOSE_ERR);
+	next[RD] = -1;
+	return (px_command_run(prev[RD], next[WR], av));
 }

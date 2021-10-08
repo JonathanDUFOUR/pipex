@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   px_process_run_parent.c                            :+:      :+:    :+:   */
+/*   px_cmd_print.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 23:28:12 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 04:24:40 by jodufour         ###   ########.fr       */
+/*   Created: 2021/10/08 09:18:07 by jodufour          #+#    #+#             */
+/*   Updated: 2021/10/08 11:12:25 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "pipex.h"
-#include "enum/e_fd.h"
-#include "enum/e_ret.h"
+#include <stdio.h>
+#include "type/t_cmd.h"
 
-int	px_process_run_parent(int *prev, int *next, char const *cmd)
+void	px_cmd_print(t_cmd cmd)
 {
-	if (close(prev[WR]) == -1)
-		return (CLOSE_ERR);
-	prev[WR] = -1;
-	if (close(next[RD]) == -1)
-		return (CLOSE_ERR);
-	next[RD] = -1;
-	return (px_command_run(prev[RD], next[WR], cmd));
+	printf("cmd.name: %s\n", cmd.name);
+	printf("cmd.path: %s\n", cmd.path);
+	printf("cmd.av:\n");
+	while (cmd.av && *cmd.av)
+		printf("\t%s\n", *cmd.av++);
 }

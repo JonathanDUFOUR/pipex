@@ -4,3 +4,6 @@
 [submodule "libft_string"]
 	path = libft_string
 	url = git@gitlab.com:JonathanDUFOUR/libft_string.git
+[submodule "libft_io"]
+	path = libft_io
+	url = git@gitlab.com:JonathanDUFOUR/libft_io.git

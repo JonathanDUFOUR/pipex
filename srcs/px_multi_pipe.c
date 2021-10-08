@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 04:02:23 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 04:35:27 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/08 07:08:02 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,11 @@ static int	dup2_outfile(int **fd, t_uint const pipe_count)
 	return (SUCCESS);
 }
 
-int	px_multi_pipe(t_uint const pipe_count, char const **cmds)
+int	px_multi_pipe(t_uint const pipe_count, char const **av)
 {
-	int				**fd;
-	int				ret;
-	t_uint			i;
+	int		**fd;
+	int		ret;
+	t_uint	i;
 
 	fd = fd_init(pipe_count);
 	if (!fd)
@@ -106,7 +106,7 @@ int	px_multi_pipe(t_uint const pipe_count, char const **cmds)
 	if (ret == SUCCESS)
 		ret = dup2_outfile(fd, pipe_count);
 	if (ret == SUCCESS)
-		ret = px_multi_fork(fd, pipe_count, cmds);
+		ret = px_multi_fork(fd, pipe_count, av);
 	fd_clear(fd, pipe_count);
 	return (ret);
 }

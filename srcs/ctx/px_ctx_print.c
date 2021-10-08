@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 21:43:52 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 04:10:50 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/08 08:19:48 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,15 @@
 void	px_ctx_print(void)
 {
 	t_ctx *const	ctx = px_ctx_get();
-	char			**path;
-	char const		**ep;
+	char const		**path = ctx->path;
+	char const		**ep = ctx->ep;
 
 	printf("ctx->infile_fd: %d\n", ctx->infile_fd);
 	printf("ctx->outfile_fd: %d\n", ctx->outfile_fd);
 	printf("ctx->path:\n");
-	path = ctx->path;
 	while (path && *path)
 		printf("\t%s\n", *path++);
 	printf("ctx->ep:\n");
-	ep = ctx->ep;
 	while (ep && *ep)
 		printf("\t%s\n", *ep++);
 }

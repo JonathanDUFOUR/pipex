@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 02:05:58 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 03:28:06 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/08 08:18:55 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	px_ctx_init(int const ac, char const **av, char const **ep)
 	ctx->outfile_fd = open(outfile_name, O_WRONLY);
 	if (ctx->outfile_fd == -1)
 		return (OPEN_ERR);
-	ctx->path = px_path_get(ep);
+	ctx->path = (char const **)px_path_get(ep);
 	if (!ctx->path)
 		return (PATH_GET_ERR);
 	ctx->ep = ep;

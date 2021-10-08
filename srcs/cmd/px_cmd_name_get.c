@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   px_process_run_child.c                             :+:      :+:    :+:   */
+/*   px_cmd_name_get.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 23:27:19 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 04:24:25 by jodufour         ###   ########.fr       */
+/*   Created: 2021/10/08 07:28:47 by jodufour          #+#    #+#             */
+/*   Updated: 2021/10/08 07:31:34 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "pipex.h"
-#include "enum/e_fd.h"
-#include "enum/e_ret.h"
+#include "ft_io.h"
+#include "ft_string.h"
 
-int	px_process_run_child(int *prev, int *next, char const *cmd)
+char	*px_cmd_name_get(char const *av)
 {
-	if (close(prev[WR]) == -1)
-		return (CLOSE_ERR);
-	prev[WR] = -1;
-	if (close(next[RD]) == -1)
-		return (CLOSE_ERR);
-	next[RD] = -1;
-	return (px_command_run(prev[RD], next[WR], cmd));
+	char		*output;
+	char const	*ptr;
+
+	while (ft_isspace(*av))
+		++av;
+	ptr = av;
+	while (*ptr && !ft_isspace(*ptr))
+		++ptr;
+	output = ft_strndup(av, ptr - av);
+	return (output);
 }

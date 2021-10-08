@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 01:54:09 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 03:27:45 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/08 08:16:54 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ struct s_ctx
 {
 	int			infile_fd;
 	int			outfile_fd;
-	char		**path;
+	char const	**path;
 	char const	**ep;
 };
 
