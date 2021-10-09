@@ -6,13 +6,14 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 03:10:17 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/09 00:43:40 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/09 11:00:54 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include "ft_string.h"
 #include "ft_mem.h"
+#include "ft_io.h"
 #include "pipex.h"
 #include "type/t_ctx.h"
 #include "type/t_cmd.h"
@@ -22,11 +23,11 @@ static int	fd_manage(int fd_in, int fd_out)
 {
 	if (dup2(fd_in, 0) == -1)
 		return (DUP2_ERR);
-	if (close(fd_in) == -1)
+	if (fd_in != -1 && ft_fddel(&fd_in) == -1)
 		return (CLOSE_ERR);
 	if (dup2(fd_out, 1) == -1)
 		return (DUP2_ERR);
-	if (close(fd_out) == -1)
+	if (fd_out != -1 && ft_fddel(&fd_out) == -1)
 		return (CLOSE_ERR);
 	return (SUCCESS);
 }
@@ -50,7 +51,6 @@ int	px_command_run(int fd_in, int fd_out, char const *av)
 	cmd.av = ft_split(av, ' ');
 	if (!cmd.av)
 		return (px_cmd_clear(&cmd, CMD_AV_GET_ERR));
-	px_cmd_print(cmd);
 	if (execve(cmd.path, cmd.av, (char *const *)ctx->ep) == -1)
 		return (px_cmd_clear(&cmd, EXECVE_ERR));
 	return (px_cmd_clear(&cmd, SUCCESS));

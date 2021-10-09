@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:46:27 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 11:30:03 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/09 09:34:50 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static t_err_msg const		g_err_msg[] = {
 	{PATH_GET_ERR, "px_path_get() failed", 20, 0},
 	{CMD_AV_GET_ERR, "px_cmd_av_get() failed", 22, 0},
 	{CMD_NAME_GET_ERR, "px_cmd_name_get() failed", 24, 0},
-	{CMD_NAME_GET_ERR, "px_cmd_path_get() failed", 24, 1},
+	{CMD_PATH_GET_ERR, "px_cmd_path_get() failed", 24, 1},
 	{FILE_CONTENT_GET_ERR, "px_file_content_get() failed", 25, 0},
 	{0, NULL, 0, 0}
 };
