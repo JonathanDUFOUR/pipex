@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 08:02:32 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/09 10:12:46 by jodufour         ###   ########.fr       */
+/*   Updated: 2021/10/10 20:03:53 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ char	*px_cmd_path_get(char const *cmd_name, char const **path)
 			return (output);
 		++path;
 	}
+	ft_memdel(&output);
 	return (NULL);
 }
