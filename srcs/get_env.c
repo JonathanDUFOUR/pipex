@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   px_path_get.c                                      :+:      :+:    :+:   */
+/*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 00:48:02 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 08:18:34 by jodufour         ###   ########.fr       */
+/*   Created: 2022/01/10 21:23:33 by jodufour          #+#    #+#             */
+/*   Updated: 2022/01/10 21:49:00 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_string.h"
 
-char	**px_path_get(char const **ep)
+/*
+	Search in the given env `ep` the given variable `varname`
+	Return the value of the variable upon success
+	Return NULL upon failure
+*/
+char	*get_env(char const *varname, char const **ep)
 {
+	size_t const	len = ft_strlen(varname);
+	char const		*assign;
+
 	while (*ep)
 	{
-		if (ft_strnstr(*ep, "PATH", 4))
-			return (ft_split((*ep) + 5, ':'));
+		if (!ft_strncmp(varname, *ep, len))
+		{
+			assign = ft_strchr(*ep, '=');
+			if (!assign)
+				return ((char *)*ep + ft_strlen(*ep));
+			return ((char *)assign + 1);
+		}
 		++ep;
 	}
 	return (NULL);

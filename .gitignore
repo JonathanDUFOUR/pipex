@@ -1,8 +1,7 @@
-**
-
-!*/
-!Makefile
-!*.c
-!*.h
-!en.subject.pdf
-!.gitignore
+**.o
+**.d
+**.a
+**.so
+**.out
+vgcore.*
+.vscode/

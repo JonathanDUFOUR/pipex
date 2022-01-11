@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   px_ctx_get.c                                       :+:      :+:    :+:   */
+/*   open_infile.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/26 01:53:44 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/08 03:49:09 by jodufour         ###   ########.fr       */
+/*   Created: 2022/01/10 15:17:58 by jodufour          #+#    #+#             */
+/*   Updated: 2022/01/10 19:42:48 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stddef.h>
-#include "type/t_ctx.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 
-t_ctx	*px_ctx_get(void)
+/*
+	Open the given infile `file`
+	and store its associated file descriptor in the given `fd`
+*/
+int	open_infile(char const *file, int *const fd)
 {
-	static t_ctx	ctx = {-1, -1, NULL, NULL};
-
-	return (&ctx);
+	*fd = open(file, O_RDONLY);
+	if (*fd == -1)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

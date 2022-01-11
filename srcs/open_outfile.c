@@ -1,23 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   px_cmd_clear.c                                     :+:      :+:    :+:   */
+/*   open_outfile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 07:37:18 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/09 10:15:29 by jodufour         ###   ########.fr       */
+/*   Created: 2022/01/10 19:39:09 by jodufour          #+#    #+#             */
+/*   Updated: 2022/01/10 19:42:04 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_mem.h"
-#include "type/t_cmd.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 
-int	px_cmd_clear(t_cmd *cmd, int const ret)
+/*
+	Open the given outfile `file`
+	and store its associated file descriptor in the given `fd`
+*/
+int	open_outfile(char const *file, int *const fd)
 {
-	ft_memdel(&cmd->av);
-	ft_memdel(&cmd->name);
-	ft_memdel(&cmd->path);
-	ft_memset(cmd, 0, sizeof(t_cmd));
-	return (ret);
+	*fd = open(file, O_CREAT | O_TRUNC | O_WRONLY, 0644);
+	if (*fd == -1)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

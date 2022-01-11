@@ -6,30 +6,39 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:42:55 by jodufour          #+#    #+#             */
-/*   Updated: 2021/10/09 10:27:57 by jodufour         ###   ########.fr       */
+/*   Updated: 2022/01/11 01:18:01 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 4096
-# endif
+int		close_pipe(int *const pipe0)
+		__attribute__((nonnull));
+int		close_pipes(int *const pipe0, int *const pipe1)
+		__attribute__((nonnull));
+int		exec(char const *cmd, int *const l_pipe, int *const r_pipe,
+			char const **ep)
+		__attribute__((nonnull));
+int		open_infile(char const *file, int *const fd)
+		__attribute__((nonnull));
+int		open_outfile(char const *file, int *const fd)
+		__attribute__((nonnull));
+int		open_pipe(int *const pipe0)
+		__attribute__((nonnull));
+int		open_pipes(int *const pipe0, int *const pipe1)
+		__attribute__((nonnull));
+int		pipeline(char const **cmd_arr, int *const l_pipe, int *const r_pipe,
+			char const **ep)
+		__attribute__((nonnull));
+int		redirect(int *const l_pipe, int *const r_pipe)
+		__attribute__((nonnull));
+int		run(char const *cmd, char const **ep)
+		__attribute__((nonnull));
 
-# include <stddef.h>
-# include "type/t_int.h"
-
-int		px_command_run(int fd_in, int fd_out, char const *av);
-int		px_multi_close(int **fd, t_uint const pipe_count, t_uint const depth);
-int		px_multi_fork(int **fd, t_uint const pipe_count, char const **av,
-			t_uint depth);
-int		px_multi_pipe(t_uint const pipe_count, char const **av);
-
-void	px_err_msg(int err);
-
-char	*px_file_content_get(int const fd);
-
-char	**px_path_get(char const **ep);
+char	*get_env(char const *varname, char const **ep)
+		__attribute__((nonnull));
+char	*str3join(char const *str0, char const *str1, char const *str2)
+		__attribute__((nonnull));
 
 #endif
