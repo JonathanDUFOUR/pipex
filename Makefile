@@ -6,7 +6,7 @@
 #    By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/26 00:03:10 by jodufour          #+#    #+#              #
-#    Updated: 2022/01/12 06:54:15 by jodufour         ###   ########.fr        #
+#    Updated: 2022/01/12 11:53:23 by jodufour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,8 @@ SRC					=	\
 						}							\
 						get_env.c					\
 						main.c						\
-						pipeline.c					\
+						pipeline_iterative.c		\
+						pipeline_recursive.c		\
 						redirect.c					\
 						run.c						\
 						str3join.c
