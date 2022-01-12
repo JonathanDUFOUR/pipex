@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_outfile.c                                     :+:      :+:    :+:   */
+/*   t_pid.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 19:39:09 by jodufour          #+#    #+#             */
-/*   Updated: 2022/01/10 19:42:04 by jodufour         ###   ########.fr       */
+/*   Created: 2021/10/08 06:51:03 by jodufour          #+#    #+#             */
+/*   Updated: 2022/01/12 00:59:15 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
+#ifndef T_PID_H
+# define T_PID_H
 
-/*
-	Open the given outfile `file`
-	and store its associated file descriptor in the given `fd`
-*/
-int	open_outfile(char const *file, int *const fd)
+# include "sys/types.h"
+
+typedef struct s_pid	t_pid;
+
+struct s_pid
 {
-	*fd = open(file, O_CREAT | O_TRUNC | O_WRONLY, 0644);
-	if (*fd == -1)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
-}
+	pid_t	id;
+	t_pid	*next;
+};
+
+int		pid_wait(t_pid *const node)
+		__attribute__((nonnull));
+
+t_pid	*pid_new(pid_t const id);
+
+#endif

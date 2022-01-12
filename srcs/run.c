@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 20:37:08 by jodufour          #+#    #+#             */
-/*   Updated: 2022/01/11 00:11:31 by jodufour         ###   ########.fr       */
+/*   Updated: 2022/01/12 05:51:32 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static int	__env_path(char const *cmd, char const **ep)
 {
 	char const	**av = (char const **)ft_split(cmd, ' ');
 
-	fprintf(stderr, "Enter: %s\n", __func__);
 	if (!av)
 		return (EXIT_FAILURE);
 	av[0] = __get_abs_path(av[0], ep);
@@ -89,7 +88,6 @@ static int	__env_path(char const *cmd, char const **ep)
 		ft_memdel(&av);
 		return (EXIT_FAILURE);
 	}
-	fprintf(stderr, "Leave: %s\n", __func__);
 	return (EXIT_SUCCESS);
 }
 
@@ -98,7 +96,6 @@ static int	__env_path(char const *cmd, char const **ep)
 */
 int	run(char const *cmd, char const **ep)
 {
-	fprintf(stderr, "Enter: %s\n", __func__);
 	if ((cmd[0] == '/') || (cmd[0] == '.' && cmd[1] == '/'))
 	{
 		if (__relabs_path(cmd, ep))
@@ -109,6 +106,5 @@ int	run(char const *cmd, char const **ep)
 		if (__env_path(cmd, ep))
 			return (EXIT_FAILURE);
 	}
-	fprintf(stderr, "Leave: %s\n", __func__);
 	return (EXIT_SUCCESS);
 }

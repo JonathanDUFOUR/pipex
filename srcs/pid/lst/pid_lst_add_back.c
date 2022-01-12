@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   open_infile.c                                      :+:      :+:    :+:   */
+/*   pid_lst_add_back.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 15:17:58 by jodufour          #+#    #+#             */
-/*   Updated: 2022/01/10 19:42:48 by jodufour         ###   ########.fr       */
+/*   Created: 2022/01/12 01:00:12 by jodufour          #+#    #+#             */
+/*   Updated: 2022/01/12 01:01:22 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
+#include "type/t_pid_lst.h"
 
-/*
-	Open the given infile `file`
-	and store its associated file descriptor in the given `fd`
-*/
-int	open_infile(char const *file, int *const fd)
+int	pid_lst_add_back(t_pid_lst *const lst, pid_t const id)
 {
-	*fd = open(file, O_RDONLY);
-	if (*fd == -1)
+	t_pid *const	node = pid_new(id);
+
+	if (!node)
 		return (EXIT_FAILURE);
+	pid_lst_push_back(lst, node);
 	return (EXIT_SUCCESS);
 }

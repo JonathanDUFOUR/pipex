@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_cmd.h                                            :+:      :+:    :+:   */
+/*   t_fds.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/08 06:51:03 by jodufour          #+#    #+#             */
-/*   Updated: 2022/01/10 14:40:40 by jodufour         ###   ########.fr       */
+/*   Created: 2022/01/11 23:09:26 by jodufour          #+#    #+#             */
+/*   Updated: 2022/01/12 08:18:54 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_CMD_H
-# define T_CMD_H
+#ifndef T_FDS_H
+# define T_FDS_H
 
-typedef struct s_cmd	t_cmd;
+typedef struct s_fds	t_fds;
 
-struct s_cmd
+struct s_fds
 {
-	char	*name;
-	char	*path;
-	char	**av;
+	int	save;
+	int	tube[2];
 };
 
 #endif

@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_ctx.h                                            :+:      :+:    :+:   */
+/*   pid_lst_wait.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/26 01:54:09 by jodufour          #+#    #+#             */
-/*   Updated: 2022/01/12 05:50:42 by jodufour         ###   ########.fr       */
+/*   Created: 2022/01/12 00:49:15 by jodufour          #+#    #+#             */
+/*   Updated: 2022/01/12 00:50:52 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef T_CTX_H
-# define T_CTX_H
+#include <stdlib.h>
+#include "type/t_pid_lst.h"
 
-# include "type/t_fds.h"
-# include "type/t_pid_lst.h"
-
-typedef struct s_ctx	t_ctx;
-
-struct s_ctx
+int	pid_lst_wait(t_pid_lst *const lst)
 {
-	char const	*infile;
-	char const	*outfile;
-	char const	**ep;
-	t_pid_lst	pids;
-	t_fds		fds;
-};
+	t_pid	*curr;
 
-#endif
+	curr = lst->head;
+	while (curr)
+	{
+		if (pid_wait(curr))
+			return (EXIT_FAILURE);
+		curr = curr->next;
+	}
+	return (EXIT_SUCCESS);
+}

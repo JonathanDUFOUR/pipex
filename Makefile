@@ -6,7 +6,7 @@
 #    By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/26 00:03:10 by jodufour          #+#    #+#              #
-#    Updated: 2022/01/11 04:12:36 by jodufour         ###   ########.fr        #
+#    Updated: 2022/01/12 06:54:15 by jodufour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,16 +52,21 @@ FT_STRING_A			:=	${addprefix ${FT_STRING_DIR}, ${FT_STRING_A}}
 #            SOURCE FILES            #
 ######################################
 SRC					=	\
-						close_pipes.c	\
-						exec.c			\
-						get_env.c		\
-						main.c			\
-						open_infile.c	\
-						open_outfile.c	\
-						open_pipes.c	\
-						pipeline.c		\
-						redirect.c		\
-						run.c			\
+						${addprefix pid/,			\
+							${addprefix lst/,		\
+								pid_lst_add_back.c	\
+								pid_lst_clear.c		\
+								pid_lst_push_back.c	\
+								pid_lst_wait.c		\
+							}						\
+							pid_new.c				\
+							pid_wait.c				\
+						}							\
+						get_env.c					\
+						main.c						\
+						pipeline.c					\
+						redirect.c					\
+						run.c						\
 						str3join.c
 
 ######################################

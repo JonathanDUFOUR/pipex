@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   t_pid_lst.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/26 00:42:55 by jodufour          #+#    #+#             */
-/*   Updated: 2022/01/12 07:40:55 by jodufour         ###   ########.fr       */
+/*   Created: 2022/01/11 23:02:55 by jodufour          #+#    #+#             */
+/*   Updated: 2022/01/12 06:55:44 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
-# define PIPEX_H
+#ifndef T_PID_LST_H
+# define T_PID_LST_H
 
-# include "type/t_ctx.h"
-# include "type/t_int.h"
+# include "type/t_pid.h"
 
-int		pipeline(t_ctx *const ctx, char const **cmd_arr, t_uint const cmd_cnt,
-			t_uint const i)
-		__attribute__((nonnull));
-int		redirect(int const redirin, int const redirout);
-int		run(char const *cmd, char const **ep)
+typedef struct s_pid_lst	t_pid_lst;
+
+struct s_pid_lst
+{
+	t_pid	*head;
+	t_pid	*tail;
+	size_t	size;
+};
+
+int		pid_lst_add_back(t_pid_lst *const lst, pid_t const id)
+		__attribute__((nonnull(1)));
+int		pid_lst_wait(t_pid_lst *const lst)
 		__attribute__((nonnull));
 
-char	*get_env(char const *varname, char const **ep)
+void	pid_lst_clear(t_pid_lst *const lst)
 		__attribute__((nonnull));
-char	*str3join(char const *str0, char const *str1, char const *str2)
+void	pid_lst_push_back(t_pid_lst *const lst, t_pid *const node)
 		__attribute__((nonnull));
 
 #endif
