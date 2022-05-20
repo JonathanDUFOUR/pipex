@@ -6,14 +6,14 @@
 #    By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/26 00:03:10 by jodufour          #+#    #+#              #
-#    Updated: 2022/01/12 11:53:23 by jodufour         ###   ########.fr        #
+#    Updated: 2022/05/19 02:56:44 by jodufour         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ######################################
 #              COMMANDS              #
 ######################################
-CC					=	clang -c
+CC					=	clang
 LINK				=	clang
 MKDIR				=	mkdir -p
 RM					=	rm -rf
@@ -31,11 +31,10 @@ OBJ_DIR				=	objs/
 PRV_DIR				=	private/
 
 FT_IO_DIR			=	libft_io/
-FT_STRING_DIR		=	libft_string/
-
 FT_IO_INC_DIR		=	include/
 FT_IO_INC_DIR		:=	${addprefix ${FT_IO_DIR}, ${FT_IO_INC_DIR}}
 
+FT_STRING_DIR		=	libft_string/
 FT_STRING_INC_DIR	=	include/
 FT_STRING_INC_DIR	:=	${addprefix ${FT_STRING_DIR}, ${FT_STRING_INC_DIR}}
 
@@ -81,7 +80,8 @@ DEP					=	${OBJ:.o=.d}
 #######################################
 #                FLAGS                #
 #######################################
-CFLAGS				=	-Wall -Wextra #-Werror
+CFLAGS				=	-c
+CFLAGS				+=	-Wall -Wextra -Werror
 CFLAGS				+=	-MMD -MP
 CFLAGS				+=	-I${PRV_DIR}
 CFLAGS				+=	-I${FT_IO_INC_DIR}
@@ -97,6 +97,8 @@ endif
 #######################################
 #                RULES                #
 #######################################
+.PHONY: all clean fclean re fre
+
 ${NAME}: ${OBJ} ${FT_IO_A} ${FT_STRING_A}
 	${LINK} ${OBJ} ${LDFLAGS} ${OUTPUT_OPTION}
 
@@ -106,12 +108,9 @@ all: ${NAME}
 
 ${OBJ_DIR}%.o: ${SRC_DIR}%.c
 	@${MKDIR} ${@D}
-	${CC} ${CFLAGS} $< ${OUTPUT_OPTION}
+	${CC} $< ${CFLAGS} ${OUTPUT_OPTION}
 
-${FT_IO_A}:
-	${MAKE} ${@F} -C ${@D}
-
-${FT_STRING_A}:
+${FT_IO_A} ${FT_STRING_A}:
 	${MAKE} ${@F} -C ${@D}
 
 clean:
@@ -126,7 +125,5 @@ re: clean all
 
 fre: fclean all
 
--include /home/jodufour/Templates/mk_files/coffee.mk
--include /home/jodufour/Templates/mk_files/norm.mk
-
-.PHONY:	all clean fclean re fre
+-include ${HOME}/Templates/mk_files/coffee.mk
+-include ${HOME}/Templates/mk_files/norm.mk
