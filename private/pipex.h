@@ -13,8 +13,8 @@
 #ifndef PIPEX_H
 # define PIPEX_H
 
-# include "type/t_ctx.h"
-# include "type/t_int.h"
+# include "t_ctx.h"
+# include "t_int.h"
 
 int		pipeline_iterative(t_ctx *const ctx, char const **cmd_arr,
 			t_uint const cmd_cnt, t_uint i)

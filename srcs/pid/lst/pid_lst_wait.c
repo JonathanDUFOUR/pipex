@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "type/t_pid_lst.h"
+#include "t_pid_lst.h"
 
 int	pid_lst_wait(t_pid_lst *const lst)
 {

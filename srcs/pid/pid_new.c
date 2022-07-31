@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "type/t_pid.h"
+#include "t_pid.h"
 
 t_pid	*pid_new(pid_t const id)
 {

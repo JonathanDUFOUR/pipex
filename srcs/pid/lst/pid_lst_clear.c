@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "type/t_pid_lst.h"
+#include "t_pid_lst.h"
 
 void	pid_lst_clear(t_pid_lst *const lst)
 {

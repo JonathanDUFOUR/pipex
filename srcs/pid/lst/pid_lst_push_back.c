@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "type/t_pid_lst.h"
+#include "t_pid_lst.h"
 
 void	pid_lst_push_back(t_pid_lst *const lst, t_pid *const node)
 {

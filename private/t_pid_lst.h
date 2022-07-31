@@ -13,7 +13,7 @@
 #ifndef T_PID_LST_H
 # define T_PID_LST_H
 
-# include "type/t_pid.h"
+# include "t_pid.h"
 
 typedef struct s_pid_lst	t_pid_lst;
 

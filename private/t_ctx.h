@@ -13,8 +13,8 @@
 #ifndef T_CTX_H
 # define T_CTX_H
 
-# include "type/t_fds.h"
-# include "type/t_pid_lst.h"
+# include "t_fds.h"
+# include "t_pid_lst.h"
 
 typedef struct s_ctx	t_ctx;
 

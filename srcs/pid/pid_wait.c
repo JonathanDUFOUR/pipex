@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include <sys/wait.h>
-#include "type/t_pid.h"
+#include "t_pid.h"
 
 int	pid_wait(t_pid *const node)
 {
