@@ -6,7 +6,7 @@
 /*   By: jodufour <jodufour@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/26 00:28:37 by jodufour          #+#    #+#             */
-/*   Updated: 2022/01/14 18:59:39 by jodufour         ###   ########.fr       */
+/*   Updated: 2022/10/06 18:40:49 by jodufour         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 static int	__usage_err(char const *program)
 {
-	ft_putstr_fd(RED "Error: wrong usage\n" RESET, STDERR_FILENO);
+	ft_putstr_fd(RED_FG "Error: wrong usage\n" RESET, STDERR_FILENO);
 	ft_putstr_fd("Usage: ", STDERR_FILENO);
 	ft_putstr_fd(program, STDERR_FILENO);
 	ft_putstr_fd(" <infile> <cmd0> <cmd1> ... <cmdn> <outfile>", STDERR_FILENO);
